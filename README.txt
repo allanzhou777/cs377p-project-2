@@ -1,0 +1,1 @@
+This project for cs377p annotates a single function, but at differing levels of optimization, namely -O1 and -O3 in the AT&T syntax. 
