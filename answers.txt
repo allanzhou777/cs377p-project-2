@@ -1,0 +1,19 @@
+----------Optimizations done in -O3 but not -O1----------
+
+Branch prediction for small values
+In -O3 code, we take a special case if 'length' <= 4. This is a way to improve
+efficiency. The tradeoff is that we increase the size of the code.
+This is a common tradeoff for higher level optimizations in which we aim to maximize code efficiency.
+
+Constant folding & propagation
+In -O1 and -O3, we use constant folding & propagation to calculate the bounds
+at which the array ends. However, in -O3, we go further with this technique and
+in addition to calculating where the vector block should end, we also calculate the
+actual end of the array so that the 1, 2, 3, or 4 remaining edge cases can be handled efficiently. 
+
+Vectorization/Loop unrolling
+By using vectorized addition, we can do loop unrolling. Rather than adding one
+integer at a time, loop unrolling in a vector-compatible register enables 
+addition of 4 integers at once. As noted in the slides, this reduces the
+number of conditional checks we do by approximately 3/4 for large array
+sizes, significantly improving performance. 
